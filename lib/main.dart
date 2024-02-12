@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/presentation/registration_by_phone/enter_phone_page.dart';
+import 'package:mobile/presentation/registration_by_phone/enter_sms_code_page.dart';
 import 'package:mobile/presentation/welcome/page.dart';
 
 void main() {
@@ -11,9 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: WelcomePage()
-    );
+    return MaterialApp(title: 'Flutter Demo', home: EnterSmsCodePage());
   }
 }

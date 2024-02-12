@@ -1,35 +1,74 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/presentation/common/constant.dart';
+import 'package:mobile/presentation/welcome/constant.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 313, width: double.infinity,),
-          _TitleWidget(),
-          SizedBox(height: 313, width: double.infinity,),
-          // _GetStartedButtonWidget(),
-        ],
+    return Scaffold(
+      body: Container(
+        margin: kCommonPageMargin,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _TitleWidget(),
+            SizedBox(height: 40),
+            _GetStartedButtonWidget(),
+            SizedBox(height: 17),
+            _IAlreadyHaveAccount(),
+          ],
+        ),
       ),
-
     );
   }
 }
 
-// class _GetStartedButtonWidget extends StatelessWidget {
-//   const _GetStartedButtonWidget({
-//     super.key,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
+class _IAlreadyHaveAccount extends StatelessWidget {
+  const _IAlreadyHaveAccount({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => {},
+      child: Text(
+        'I already have an account',
+        style: kHaveAnAccountTextStyle,
+      ),
+    );
+  }
+}
+
+class _GetStartedButtonWidget extends StatelessWidget {
+  const _GetStartedButtonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: double.infinity,
+        constraints:
+            const BoxConstraints(minWidth: 160, minHeight: 66, maxHeight: 66),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0.0),
+              ),
+              backgroundColor: kButtonColor),
+          onPressed: () => {},
+          child: Text(
+            'Get started!',
+            style: kButtonTextStyle,
+          ),
+        ));
+  }
+}
 
 class _TitleWidget extends StatelessWidget {
   const _TitleWidget({
@@ -39,11 +78,8 @@ class _TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "Let's start  logging your life!",
-        style: kTitleTextStyle,
-        textAlign: TextAlign.center
-      ),
+      child: Text("Let's start\n logging your life!",
+          style: kTitleTextStyle, textAlign: TextAlign.center),
     );
   }
 }
