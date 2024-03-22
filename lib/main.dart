@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/registration_by_phone/enter_phone_page.dart';
-import 'package:mobile/presentation/registration_by_phone/enter_sms_code_page.dart';
-import 'package:mobile/presentation/welcome/page.dart';
+import 'package:mobile/features/sing_up/sing_up.dart';
 
 void main() {
   runApp(const MyApp());
