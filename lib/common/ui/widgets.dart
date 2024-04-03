@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile/presentation/common/constant.dart';
+import 'package:mobile/common/ui/constant.dart';
 
 var LogoWidget = Container(
   margin: kCommonPageMargin,

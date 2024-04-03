@@ -28,6 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_bloc: ^8.1.5
+  equatable: 2.0.5
+  flutter_dotenv: 5.1.0
+  retrofit: 4.1.0
+  json_annotation: 4.8.0
+  shared_preferences: ^2.1.2
   flutter:
     sdk: flutter
 
@@ -36,8 +42,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
+  dio: ^5.4.1
 
 dev_dependencies:
+  json_serializable: 6.6.1
+  retrofit_generator: '>=7.0.0 <8.0.0'
+  build_runner: 2.3.3
   flutter_test:
     sdk: flutter
 
@@ -55,6 +65,7 @@ dev_dependencies:
 flutter:
 
   assets:
+    - .env
     - assets/icons/
 
   # The following line ensures that the Material Icons font is

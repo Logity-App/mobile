@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/common/constant.dart';
-import 'package:mobile/presentation/welcome/constant.dart';
+import 'package:mobile/common/ui/constant.dart';
+import 'package:mobile/features/welcome/view/constant.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

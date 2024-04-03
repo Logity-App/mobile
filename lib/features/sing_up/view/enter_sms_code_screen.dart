@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/common/ui/constant.dart';
+import 'package:mobile/common/ui/widgets.dart';
 import 'package:mobile/features/sing_up/view/constant.dart';
-import 'package:mobile/presentation/common/constant.dart';
-import 'package:mobile/presentation/common/widgets.dart';
 
 class EnterSmsCodePage extends StatelessWidget {
   const EnterSmsCodePage({super.key});

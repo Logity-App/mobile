@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/common/constant.dart';
+import 'package:mobile/common/ui/constant.dart';
 
 var kOtpFieldFilledBackground = Color.fromRGBO(57, 56, 56, 1.0);
 var kOtpFieldEmptyBackground = Color.fromRGBO(224, 224, 224, 1.0);
