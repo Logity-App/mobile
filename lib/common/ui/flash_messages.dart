@@ -19,7 +19,7 @@ SnackBar flashError(BuildContext context, String message) {
       ),
     ),
     backgroundColor: kButtonColor,
-    duration: Duration(seconds: 3),
+    duration: Duration(seconds: 5),
     action: SnackBarAction(
       label: 'X',
       textColor: Colors.white,

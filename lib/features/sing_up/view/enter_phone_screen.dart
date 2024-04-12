@@ -1,12 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mobile/common/ui/constant.dart';
 import 'package:mobile/common/ui/flash_messages.dart';
 import 'package:mobile/common/ui/widgets.dart';
 import 'package:mobile/features/sing_up/bloc/sing_up_bloc.dart';
 import 'package:mobile/features/sing_up/view/constant.dart';
 import 'package:mobile/features/sing_up/view/helpers.dart';
+import 'package:mobile/router/router.dart';
 
+@RoutePage()
 class EnterPhonePage extends StatelessWidget {
   const EnterPhonePage({super.key});
 
@@ -30,7 +34,7 @@ class ScaffoldWidget extends StatelessWidget {
       appBar: AppBar(
         leading: LogoWidget,
         leadingWidth: 85,
-        actions: [BackButtonWidget()],
+        actions: [_BackButtonWidget()],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Container(
@@ -58,11 +62,20 @@ class BodyContainerWidget extends StatelessWidget {
 
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
+        if (state is SignUpStateBack) {
+          AutoRouter.of(context).push(WelcomeRoute());
+        }
+
         if (state is SignUpStateNextLoading) {
           return Center(child: CircularProgressIndicator(color: kButtonColor));
         }
+
         if (state is SignUpStateNextFailure) {
           _showFlashError(context, state.exceptionMessage);
+        }
+
+        if (state is SignUpStateNextSuccess) {
+          AutoRouter.of(context).push(EnterSmsCodeRoute());
         }
 
         return _EnterPhoneNumberForm(phoneController: _phoneController);
@@ -212,6 +225,30 @@ class _PhoneTextField extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _BackButtonWidget extends StatelessWidget {
+  const _BackButtonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<SignUpBloc>(context);
+    return GestureDetector(
+      onTap: () {
+        bloc.add(SignUpEventBack());
+      },
+      child: Container(
+        margin: kCommonPageMargin,
+        child: SvgPicture.asset(
+          'assets/icons/back_arrow.svg',
+          width: 25,
+          height: 25,
+        ),
+      ),
     );
   }
 }

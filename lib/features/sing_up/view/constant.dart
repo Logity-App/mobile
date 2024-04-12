@@ -6,12 +6,19 @@ var kOtpFieldEmptyBackground = Color.fromRGBO(224, 224, 224, 1.0);
 var kOtpFieldFilledDigit = Color.fromRGBO(224, 224, 224, 1.0);
 var kOtpFieldEmptyDigit = Color.fromRGBO(57, 56, 56, 1.0);
 
-var kRetrySendTextStyle = TextStyle(
+var kRetrySendEnableTextStyle = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w400,
     fontSize: 18,
     letterSpacing: 0,
     color: Colors.white);
+
+var kRetrySendDisableTextStyle = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+    fontSize: 18,
+    letterSpacing: 0,
+    color: kOtpFieldEmptyDigit);
 
 var kEnterSmsCodeTextStyle = TextStyle(
   fontFamily: 'Inter',

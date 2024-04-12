@@ -8,6 +8,7 @@
             "name": "mobile",
             "request": "launch",
             "type": "dart",
+            "deviceId": "iPhone 14 Pro Max"
         },
         {
             "name": "mobile (profile mode)",

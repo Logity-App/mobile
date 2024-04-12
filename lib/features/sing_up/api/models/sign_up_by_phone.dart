@@ -18,8 +18,7 @@ class SignUpByPhoneRequest extends Equatable {
       {required this.phone, required this.defaultTag, required this.birthDay});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [phone, birthDay, defaultTag];
 
   factory SignUpByPhoneRequest.fromJson(Map<String, dynamic> json) =>
       _$SignUpByPhoneRequestFromJson(json);
@@ -36,8 +35,7 @@ class SignUpByPhoneResponse extends Equatable {
   const SignUpByPhoneResponse({required this.id});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [id];
 
   factory SignUpByPhoneResponse.fromJson(Map<String, dynamic> json) =>
       _$SignUpByPhoneResponseFromJson(json);

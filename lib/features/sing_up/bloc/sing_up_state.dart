@@ -32,3 +32,7 @@ class SignUpStateNextFailure extends SignUpState {
 
   SignUpStateNextFailure({required this.phone, required this.exceptionMessage});
 }
+
+class SignUpStateBack extends SignUpState {
+  SignUpStateBack();
+}

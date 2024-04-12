@@ -1,28 +1,69 @@
-import 'package:flutter/gestures.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/ui/constant.dart';
+import 'package:mobile/features/welcome/bloc/welcome_bloc.dart';
+import 'package:mobile/features/welcome/bloc/welcome_event.dart';
+import 'package:mobile/features/welcome/bloc/welcome_state.dart';
 import 'package:mobile/features/welcome/view/constant.dart';
+import 'package:mobile/router/router.dart';
 
+@RoutePage()
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => WelcomeBloc(),
+      child: _ScaffoldWidget(),
+    );
+  }
+}
+
+class _ScaffoldWidget extends StatelessWidget {
+  const _ScaffoldWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: kCommonPageMargin,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _TitleWidget(),
-            SizedBox(height: 40),
-            _GetStartedButtonWidget(),
-            SizedBox(height: 17),
-            _IAlreadyHaveAccount(),
-          ],
-        ),
-      ),
+      body: _BodyContainer(),
+    );
+  }
+}
+
+class _BodyContainer extends StatelessWidget {
+  const _BodyContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WelcomeBloc, WelcomeState>(
+      builder: (context, state) {
+        if (state is WelcomeStateGetStarted) {
+          AutoRouter.of(context).push(EnterPhoneRoute());
+        }
+
+        if (state is WelcomeStateAlreadyHaveAccount) {}
+
+        return Container(
+          margin: kCommonPageMargin,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _TitleWidget(),
+              SizedBox(height: 40),
+              _GetStartedButtonWidget(),
+              SizedBox(height: 17),
+              _IAlreadyHaveAccount(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -51,6 +92,7 @@ class _GetStartedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<WelcomeBloc>(context);
     return Container(
         width: double.infinity,
         constraints:
@@ -61,7 +103,7 @@ class _GetStartedButtonWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(0.0),
               ),
               backgroundColor: kButtonColor),
-          onPressed: () => {},
+          onPressed: () => {bloc.add(WelcomeEventGetStarted())},
           child: Text(
             'Get started!',
             style: kButtonTextStyle,

@@ -5,13 +5,15 @@ part 'send_sms_code.g.dart';
 
 @JsonSerializable()
 class SendSmsCodeRequest extends Equatable {
-  @JsonKey(name: "code")
+  @JsonKey(name: "smsCode")
   final String code;
-  const SendSmsCodeRequest({required this.code});
+
+  @JsonKey(name: "phone")
+  final String phone;
+  const SendSmsCodeRequest({required this.code, required this.phone});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [code, phone];
 
   factory SendSmsCodeRequest.fromJson(Map<String, dynamic> json) =>
       _$SendSmsCodeRequestFromJson(json);
@@ -21,16 +23,16 @@ class SendSmsCodeRequest extends Equatable {
 
 @JsonSerializable()
 class SendSmsCodeResponse extends Equatable {
-  @JsonKey(name: "code")
-  final String status;
-  @JsonKey(name: "expired_at")
-  final DateTime expiredAt;
+  @JsonKey(name: "status")
+  final String? status;
 
-  const SendSmsCodeResponse({required this.status, required this.expiredAt});
+  @JsonKey(name: "error")
+  final String? error;
+
+  const SendSmsCodeResponse({this.status, this.error});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [status ?? "", error ?? ""];
 
   factory SendSmsCodeResponse.fromJson(Map<String, dynamic> json) =>
       _$SendSmsCodeResponseFromJson(json);

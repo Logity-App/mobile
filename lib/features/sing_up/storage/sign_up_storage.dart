@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:mobile/features/sing_up/storage/abstract_sign_up.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,6 +11,12 @@ class SignUpStorage extends SignUpStorageContract {
   Future<String> getPhone() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString("$prefix:phone") ?? "";
+  }
+
+  @override
+  Future<int> getDurationTimer() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt("$prefix:duration_timer") ?? 0;
   }
 
   @override
@@ -27,6 +34,11 @@ class SignUpStorage extends SignUpStorageContract {
     ]);
   }
 
+  @override
+  Future<void> setPhoneSmsCode(String smsCode, String phone) async {
+    await Future.wait([_setPhone(phone), _setSmsCode(smsCode)]);
+  }
+
   Future<void> _setPhone(String phone) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("$prefix:phone", phone);
@@ -37,8 +49,8 @@ class SignUpStorage extends SignUpStorageContract {
     await prefs.setString("$prefix:sms_code", smsCode);
   }
 
-  @override
-  Future<void> setPhoneSmsCode(String smsCode, String phone) async {
-    await Future.wait([_setPhone(phone), _setSmsCode(smsCode)]);
+  Future<void> setDurationTimer(int durationTimer) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt("$prefix:duration_timer", durationTimer);
   }
 }

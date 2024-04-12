@@ -9,3 +9,5 @@ class SignUpEventNext extends SignUpEvent {
 
   SignUpEventNext({required this.phone});
 }
+
+class SignUpEventBack extends SignUpEvent {}

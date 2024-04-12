@@ -8,23 +8,25 @@ part of 'send_sms_code.dart';
 
 SendSmsCodeRequest _$SendSmsCodeRequestFromJson(Map<String, dynamic> json) =>
     SendSmsCodeRequest(
-      code: json['code'] as String,
+      code: json['smsCode'] as String,
+      phone: json['phone'] as String,
     );
 
 Map<String, dynamic> _$SendSmsCodeRequestToJson(SendSmsCodeRequest instance) =>
     <String, dynamic>{
-      'code': instance.code,
+      'smsCode': instance.code,
+      'phone': instance.phone,
     };
 
 SendSmsCodeResponse _$SendSmsCodeResponseFromJson(Map<String, dynamic> json) =>
     SendSmsCodeResponse(
-      status: json['code'] as String,
-      expiredAt: DateTime.parse(json['expired_at'] as String),
+      status: json['status'] as String?,
+      error: json['error'] as String?,
     );
 
 Map<String, dynamic> _$SendSmsCodeResponseToJson(
         SendSmsCodeResponse instance) =>
     <String, dynamic>{
-      'code': instance.status,
-      'expired_at': instance.expiredAt.toIso8601String(),
+      'status': instance.status,
+      'error': instance.error,
     };
