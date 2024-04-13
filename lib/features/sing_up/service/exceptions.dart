@@ -9,3 +9,7 @@ class ResponseFailureException extends SystemException {
   ResponseFailureException(String cause)
       : super("response fatal error: $cause");
 }
+
+class ValidationException extends UserException {
+  ValidationException(String cause) : super("validation error: $cause");
+}

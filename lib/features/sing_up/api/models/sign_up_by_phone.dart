@@ -29,13 +29,19 @@ class SignUpByPhoneRequest extends Equatable {
 
 @JsonSerializable()
 class SignUpByPhoneResponse extends Equatable {
-  @JsonKey(name: "id")
-  final String id;
+  @JsonKey(name: "status")
+  final String? status;
 
-  const SignUpByPhoneResponse({required this.id});
+  @JsonKey(name: "access_token")
+  final String? accessToken;
+
+  @JsonKey(name: "error")
+  final String? error;
+
+  const SignUpByPhoneResponse({this.status, this.accessToken, this.error});
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [status ?? "", accessToken ?? "", error ?? ""];
 
   factory SignUpByPhoneResponse.fromJson(Map<String, dynamic> json) =>
       _$SignUpByPhoneResponseFromJson(json);

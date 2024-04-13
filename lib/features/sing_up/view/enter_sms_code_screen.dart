@@ -10,7 +10,6 @@ import 'package:mobile/features/sing_up/bloc/send_sms_code_event.dart';
 import 'package:mobile/features/sing_up/bloc/send_sms_code_state.dart';
 import 'package:mobile/features/sing_up/view/constant.dart';
 import 'package:mobile/router/router.dart';
-import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 

@@ -25,11 +25,15 @@ Map<String, dynamic> _$SignUpByPhoneRequestToJson(
 SignUpByPhoneResponse _$SignUpByPhoneResponseFromJson(
         Map<String, dynamic> json) =>
     SignUpByPhoneResponse(
-      id: json['id'] as String,
+      status: json['status'] as String?,
+      accessToken: json['access_token'] as String?,
+      error: json['error'] as String?,
     );
 
 Map<String, dynamic> _$SignUpByPhoneResponseToJson(
         SignUpByPhoneResponse instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'status': instance.status,
+      'access_token': instance.accessToken,
+      'error': instance.error,
     };

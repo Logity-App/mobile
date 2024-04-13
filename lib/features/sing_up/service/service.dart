@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mobile/common/exceptions/exceptions.dart';
 import 'package:mobile/features/sing_up/api/abstract_sign_up_repository.dart';
 import 'package:mobile/features/sing_up/api/models/send_sms_code.dart';
+import 'package:mobile/features/sing_up/api/models/sign_up_by_phone.dart';
 import 'package:mobile/features/sing_up/api/models/verify_phone_number.dart';
 import 'package:mobile/features/sing_up/service/exceptions.dart';
 import 'package:mobile/features/sing_up/storage/abstract_sign_up.dart';
@@ -124,6 +125,37 @@ class SignUpService {
       return phone.international;
     } catch (e) {
       throw UserException("phone number isn't valid: $rawPhone");
+    }
+  }
+
+  Future<void> signUpRegister(String defaultTag, String birthDay) async {
+    _validateSignUpRegister(defaultTag, birthDay);
+    var phone = await storage.getPhone();
+    await _signUpByPhone(SignUpByPhoneRequest(
+        phone: phone, defaultTag: defaultTag, birthDay: birthDay));
+  }
+
+  Future<void> _signUpByPhone(SignUpByPhoneRequest request) async {
+    var resp = await repository.signUpByPhone(request).catchError((e) {
+      throw (ResponseFailureException(e.toString()));
+    });
+
+    if (resp.error != null) {
+      throw ResponseErrorException(resp.error!);
+    }
+
+    if (resp.status != "Success") {
+      throw ResponseErrorException("status response not success");
+    }
+  }
+
+  Future<void> _validateSignUpRegister(
+      String defaultTag, String birthDay) async {
+    if (defaultTag.isEmpty) {
+      throw (ValidationException("default tag must not be empty"));
+    }
+    if (birthDay.isEmpty) {
+      throw (ValidationException("birth day must not be empty"));
     }
   }
 }

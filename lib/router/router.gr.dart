@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const EnterSmsCodePage(),
       );
     },
+    FinishSignUpRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FinishSignUpPage(),
+      );
+    },
     WelcomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -60,6 +66,20 @@ class EnterSmsCodeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EnterSmsCodeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FinishSignUpPage]
+class FinishSignUpRoute extends PageRouteInfo<void> {
+  const FinishSignUpRoute({List<PageRouteInfo>? children})
+      : super(
+          FinishSignUpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FinishSignUpRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
