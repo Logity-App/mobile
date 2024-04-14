@@ -32,6 +32,6 @@ class FinishBloc extends Bloc<FinishEvent, FinishState> {
   }
 
   Future<void> _handleBackEvent(FinishBackEvent event, Emitter emit) async {
-    emit(FinishBackEvent());
+    emit(FinishBackState());
   }
 }

@@ -275,8 +275,11 @@ class _BackButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<FinishBloc>(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        bloc.add(FinishBackEvent());
+      },
       child: Container(
         margin: kCommonPageMargin,
         child: SvgPicture.asset(
